@@ -1,6 +1,7 @@
 import hashlib
 import io
 import os
+import sys
 import glob
 import urllib
 import warnings
@@ -8,11 +9,15 @@ import torch
 import numpy as np
 from tqdm import tqdm
 from typing import List, Optional, Union
-from pathlib import Path
 
-from .whisper.Transcribe import transcribe
-from .whisper.Utils import optional_int, optional_float, str2bool, get_writer
-from .whisper.Model import ModelDimensions, Whisper
+from pathlib import Path
+current_dir = Path(__file__).absolute().parent.as_posix()
+sys.path.insert(0, f"{current_dir}")
+os.chdir(current_dir)
+
+from whisper.Transcribe import transcribe
+from whisper.Utils import optional_int, optional_float, str2bool, get_writer
+from whisper.Model import ModelDimensions, Whisper
 
 
 _MODELS = {
